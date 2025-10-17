@@ -1,6 +1,8 @@
-# Setup Progetto Web con Lando, WSL, Bootstrap, jQuery, Swiper
+# First Project AI - Modern Web Project
 
-> Progetto web responsive, sicuro e conforme W3C con automatizzazione completa per sviluppo in ambiente WSL.
+> Primo progetto web di test utilizzando VS Code con l'user agent Claude Sonnet 4
+
+**Setup completo con Lando, WSL, Bootstrap, jQuery, Swiper** - Progetto web responsive, sicuro e conforme W3C con automatizzazione completa per sviluppo in ambiente WSL.
 
 ## 🚀 Caratteristiche
 

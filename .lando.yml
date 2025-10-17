@@ -1,0 +1,22 @@
+name: mywebsite
+recipe: lamp
+config:
+  webroot: src
+  composer_version: latest
+  php: '8.2'
+  database: mysql:8.0
+services:
+  appserver:
+    type: php:8.2
+  database:
+    type: mysql:8.0
+tooling:
+  composer:
+    service: appserver
+    cmd: composer
+  npm:
+    service: appserver
+    cmd: npm
+events:
+  post-start:
+    - "echo 'Lando started'"

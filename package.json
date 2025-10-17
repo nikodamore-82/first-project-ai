@@ -1,0 +1,41 @@
+{
+  "name": "mywebsite-project",
+  "version": "1.0.0",
+  "description": "Progetto web con Lando, Bootstrap, jQuery e Swiper",
+  "main": "src/assets/js/main.js",
+  "scripts": {
+    "start": "bash scripts/generate-scaffold.sh",
+    "watch": "bash scripts/run-watcher.sh",
+    "deps": "bash scripts/check-deps.sh",
+    "build": "echo 'Build process here'",
+    "test": "echo 'Test suite here'"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "jquery": "^3.7.1",
+    "swiper": "^12.0.2"
+  },
+  "devDependencies": {
+    "sass": "^1.69.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31"
+  },
+  "keywords": [
+    "bootstrap",
+    "jquery",
+    "swiper",
+    "lando",
+    "responsive",
+    "web"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/mywebsite-project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/mywebsite-project/issues"
+  },
+  "homepage": "https://github.com/yourusername/mywebsite-project#readme"
+}

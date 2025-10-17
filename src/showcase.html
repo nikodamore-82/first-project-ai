@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modern Design Showcase</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body>
+  <!-- Sistema di autenticazione -->
+  <div class="auth-buttons">
+    <span id="userInfo" class="user-info hidden"></span>
+    <button id="registerBtn" class="btn btn-outline-primary">Register</button>
+    <button id="loginBtn" class="btn btn-primary">Login</button>
+    <button id="usersBtn" class="btn btn-info hidden">Utenti</button>
+    <button id="logoutBtn" class="btn btn-danger hidden">Logout</button>
+  </div>
+
+  <!-- Modal per registrazione -->
+  <div id="registerModal" class="auth-modal">
+    <div class="auth-form">
+      <button class="close-modal" onclick="closeModal('registerModal')">&times;</button>
+      <h3>Registrazione</h3>
+      <div id="registerAlert"></div>
+      <form id="registerForm">
+        <div class="form-group">
+          <label for="regUsername">Username:</label>
+          <input type="text" id="regUsername" name="username" required minlength="3">
+        </div>
+        <div class="form-group">
+          <label for="regPassword">Password:</label>
+          <input type="password" id="regPassword" name="password" required minlength="4">
+        </div>
+        <div class="form-group">
+          <label for="regConfirmPassword">Conferma Password:</label>
+          <input type="password" id="regConfirmPassword" name="confirmPassword" required>
+        </div>
+        <button type="submit" class="btn btn-success">Registrati</button>
+        <button type="button" class="btn btn-secondary" onclick="closeModal('registerModal')">Annulla</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal per login -->
+  <div id="loginModal" class="auth-modal">
+    <div class="auth-form">
+      <button class="close-modal" onclick="closeModal('loginModal')">&times;</button>
+      <h3>Login</h3>
+      <div id="loginAlert"></div>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginUsername">Username:</label>
+          <input type="text" id="loginUsername" name="username" required>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password:</label>
+          <input type="password" id="loginPassword" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Accedi</button>
+        <button type="button" class="btn btn-secondary" onclick="closeModal('loginModal')">Annulla</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal per lista utenti -->
+  <div id="usersModal" class="auth-modal">
+    <div class="auth-form" style="max-width: 600px;">
+      <button class="close-modal" onclick="closeModal('usersModal')">&times;</button>
+      <h3><i class="fas fa-users"></i> Utenti Registrati</h3>
+      <div id="usersContent">
+        <!-- Il contenuto verrà popolato dinamicamente -->
+      </div>
+      <div class="mt-3 text-center">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('usersModal')">Chiudi</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="container-fluid">
+    <div class="container">
+      <h1><i class="fas fa-palette"></i> Design Showcase</h1>
+      <p class="subtitle">Dimostrazione delle funzionalità moderne implementate</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="row mb-5">
+      <div class="col-12">
+        <nav class="nav nav-pills nav-fill mb-4">
+          <a class="nav-link active" href="/">Homepage</a>
+          <a class="nav-link" href="auth-test.html">Test Auth</a>
+          <a class="nav-link" href="showcase.html">Showcase</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="row mb-5">
+      <div class="col-12">
+        <h2 class="text-gradient mb-4"><i class="fas fa-sparkles"></i> Caratteristiche Implementate</h2>
+        
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="feature-card">
+              <h4><i class="fas fa-paint-brush text-primary"></i> Design Moderno</h4>
+              <ul class="list-unstyled">
+                <li><i class="fas fa-check text-success"></i> Gradienti CSS avanzati</li>
+                <li><i class="fas fa-check text-success"></i> Glassmorphism effects</li>
+                <li><i class="fas fa-check text-success"></i> Font Google (Inter)</li>
+                <li><i class="fas fa-check text-success"></i> Icone Font Awesome</li>
+                <li><i class="fas fa-check text-success"></i> Animazioni CSS</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="col-md-6 mb-4">
+            <div class="feature-card">
+              <h4><i class="fas fa-mobile-alt text-success"></i> Responsive Design</h4>
+              <ul class="list-unstyled">
+                <li><i class="fas fa-check text-success"></i> Bootstrap 5.3.8</li>
+                <li><i class="fas fa-check text-success"></i> Mobile-first approach</li>
+                <li><i class="fas fa-check text-success"></i> Breakpoints ottimizzati</li>
+                <li><i class="fas fa-check text-success"></i> Touch-friendly</li>
+                <li><i class="fas fa-check text-success"></i> Accessibilità migliorata</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="feature-card">
+              <h4><i class="fas fa-shield-alt text-warning"></i> Sistema Auth</h4>
+              <ul class="list-unstyled">
+                <li><i class="fas fa-check text-success"></i> Registrazione utenti</li>
+                <li><i class="fas fa-check text-success"></i> Login sicuro</li>
+                <li><i class="fas fa-check text-success"></i> Gestione sessioni</li>
+                <li><i class="fas fa-check text-success"></i> Lista utenti registrati</li>
+                <li><i class="fas fa-check text-success"></i> Validazioni real-time</li>
+                <li><i class="fas fa-check text-success"></i> Modal eleganti</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="col-md-6 mb-4">
+            <div class="feature-card">
+              <h4><i class="fas fa-cogs text-danger"></i> Tecnologie</h4>
+              <ul class="list-unstyled">
+                <li><i class="fas fa-check text-success"></i> jQuery 3.7.1</li>
+                <li><i class="fas fa-check text-success"></i> Swiper.js 12.x</li>
+                <li><i class="fas fa-check text-success"></i> Lando + Docker</li>
+                <li><i class="fas fa-check text-success"></i> WSL compatibile</li>
+                <li><i class="fas fa-check text-success"></i> File watcher</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo Buttons -->
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h3 class="mb-4">Demo Interattive</h3>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <button class="btn btn-primary btn-lg" onclick="testAnimation()">
+            <i class="fas fa-magic"></i> Test Animazione
+          </button>
+          <button class="btn btn-success btn-lg" onclick="showNotification('success')">
+            <i class="fas fa-check"></i> Notifica Success
+          </button>
+          <button class="btn btn-warning btn-lg" onclick="showNotification('warning')">
+            <i class="fas fa-exclamation"></i> Notifica Warning
+          </button>
+          <button class="btn btn-info btn-lg" onclick="scrollToTop()">
+            <i class="fas fa-arrow-up"></i> Scroll Top
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Performance Info -->
+    <div class="row">
+      <div class="col-12">
+        <div class="feature-card text-center">
+          <h4><i class="fas fa-tachometer-alt text-info"></i> Performance</h4>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="p-3">
+                <h5>Loading</h5>
+                <div class="display-6 text-primary">Fast</div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="p-3">
+                <h5>Responsive</h5>
+                <div class="display-6 text-success">100%</div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="p-3">
+                <h5>Modern</h5>
+                <div class="display-6 text-warning">CSS3</div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="p-3">
+                <h5>Interactive</h5>
+                <div class="display-6 text-danger">JS</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-5 py-4" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
+    <div class="container text-center">
+      <p class="text-white mb-0">
+        <i class="fas fa-code"></i> 
+        Modern Web Design Showcase - Tutte le funzionalità implementate
+      </p>
+    </div>
+  </footer>
+
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!-- Bootstrap Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  
+  <script>
+    function testAnimation() {
+      const cards = document.querySelectorAll('.feature-card');
+      cards.forEach((card, index) => {
+        setTimeout(() => {
+          card.style.transform = 'scale(1.05) rotate(2deg)';
+          setTimeout(() => {
+            card.style.transform = '';
+          }, 300);
+        }, index * 100);
+      });
+    }
+
+    function showNotification(type) {
+      const colors = {
+        success: 'bg-success',
+        warning: 'bg-warning',
+        info: 'bg-info'
+      };
+      
+      const notification = document.createElement('div');
+      notification.className = `position-fixed top-0 end-0 m-3 p-3 text-white rounded ${colors[type]} shadow`;
+      notification.style.zIndex = '9999';
+      notification.innerHTML = `<i class="fas fa-${type === 'success' ? 'check' : 'info'}"></i> Notifica di tipo ${type}!`;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.style.opacity = '0';
+        setTimeout(() => notification.remove(), 300);
+      }, 2000);
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

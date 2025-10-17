@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test Autenticazione - Progetto Demo</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body>
+  <!-- Sistema di autenticazione -->
+  <div class="auth-buttons">
+    <span id="userInfo" class="user-info hidden"></span>
+    <button id="registerBtn" class="btn btn-outline-primary">Register</button>
+    <button id="loginBtn" class="btn btn-primary">Login</button>
+    <button id="usersBtn" class="btn btn-info hidden">Utenti</button>
+    <button id="logoutBtn" class="btn btn-danger hidden">Logout</button>
+  </div>
+
+  <!-- Modal per registrazione -->
+  <div id="registerModal" class="auth-modal">
+    <div class="auth-form">
+      <button class="close-modal" onclick="closeModal('registerModal')">&times;</button>
+      <h3>Registrazione</h3>
+      <div id="registerAlert"></div>
+      <form id="registerForm">
+        <div class="form-group">
+          <label for="regUsername">Username:</label>
+          <input type="text" id="regUsername" name="username" required minlength="3">
+        </div>
+        <div class="form-group">
+          <label for="regPassword">Password:</label>
+          <input type="password" id="regPassword" name="password" required minlength="4">
+        </div>
+        <div class="form-group">
+          <label for="regConfirmPassword">Conferma Password:</label>
+          <input type="password" id="regConfirmPassword" name="confirmPassword" required>
+        </div>
+        <button type="submit" class="btn btn-success">Registrati</button>
+        <button type="button" class="btn btn-secondary" onclick="closeModal('registerModal')">Annulla</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal per login -->
+  <div id="loginModal" class="auth-modal">
+    <div class="auth-form">
+      <button class="close-modal" onclick="closeModal('loginModal')">&times;</button>
+      <h3>Login</h3>
+      <div id="loginAlert"></div>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginUsername">Username:</label>
+          <input type="text" id="loginUsername" name="username" required>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password:</label>
+          <input type="password" id="loginPassword" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Accedi</button>
+        <button type="button" class="btn btn-secondary" onclick="closeModal('loginModal')">Annulla</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal per lista utenti -->
+  <div id="usersModal" class="auth-modal">
+    <div class="auth-form" style="max-width: 600px;">
+      <button class="close-modal" onclick="closeModal('usersModal')">&times;</button>
+      <h3><i class="fas fa-users"></i> Utenti Registrati</h3>
+      <div id="usersContent">
+        <!-- Il contenuto verrà popolato dinamicamente -->
+      </div>
+      <div class="mt-3 text-center">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('usersModal')">Chiudi</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="container py-3">
+    <h1 style="color: #333 !important; background: none !important; border: none !important; font-size: 2.5rem !important; padding: 0 !important;">Test Autenticazione</h1>
+  </header>
+
+  <main class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Sistema di Autenticazione</h5>
+            <p class="card-text">
+              Questo sistema permette di registrare nuovi utenti e effettuare il login.
+              I dati vengono salvati nel localStorage del browser.
+            </p>
+            
+            <h6>Istruzioni:</h6>
+            <ol>
+              <li>Clicca su <strong>"Register"</strong> in alto a destra per registrare un nuovo utente</li>
+              <li>Inserisci username (min 3 caratteri) e password (min 4 caratteri)</li>
+              <li>Dopo la registrazione, effettua il <strong>"Login"</strong></li>
+              <li>Una volta loggato, vedrai il tuo username, il bottone <strong>"Utenti"</strong> e <strong>"Logout"</strong></li>
+              <li>Clicca su <strong>"Utenti"</strong> per vedere la lista di tutti gli utenti registrati</li>
+              <li>Nel modal utenti vedrai statistiche, avatars e data di registrazione</li>
+            </ol>
+
+            <div id="debugInfo" class="mt-4 p-3 bg-light rounded">
+              <h6>Debug Info:</h6>
+              <p>Utenti registrati: <span id="userCount">0</span></p>
+              <p>Stato login: <span id="loginStatus">Non loggato</span></p>
+              <button class="btn btn-warning btn-sm" onclick="clearAllData()">Pulisci tutti i dati</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!-- Bootstrap Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="assets/js/main.js"></script>
+  
+  <script>
+    // Funzioni aggiuntive per il debug
+    function updateDebugInfo() {
+      const users = JSON.parse(localStorage.getItem('users') || '{}');
+      const currentUser = localStorage.getItem('currentUser');
+      
+      document.getElementById('userCount').textContent = Object.keys(users).length;
+      document.getElementById('loginStatus').textContent = currentUser ? `Loggato come: ${currentUser}` : 'Non loggato';
+    }
+    
+    function clearAllData() {
+      if(confirm('Sei sicuro di voler cancellare tutti i dati di autenticazione?')) {
+        localStorage.removeItem('users');
+        localStorage.removeItem('currentUser');
+        location.reload();
+      }
+    }
+    
+    // Aggiorna info debug ogni secondo
+    setInterval(updateDebugInfo, 1000);
+    updateDebugInfo();
+  </script>
+</body>
+</html>

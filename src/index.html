@@ -25,6 +25,9 @@
     <span id="userInfo" class="user-info hidden"></span>
     <button id="registerBtn" class="btn btn-outline-primary">Register</button>
     <button id="loginBtn" class="btn btn-primary">Login</button>
+    <button id="editProfileBtn" class="btn btn-success hidden">
+      <i class="fas fa-user-edit"></i> Modifica Dati
+    </button>
     <button id="usersBtn" class="btn btn-info hidden">Utenti</button>
     <button id="logoutBtn" class="btn btn-danger hidden">Logout</button>
   </div>
@@ -39,6 +42,10 @@
         <div class="form-group">
           <label for="regUsername">Username:</label>
           <input type="text" id="regUsername" name="username" required minlength="3">
+        </div>
+        <div class="form-group">
+          <label for="regEmail">Email:</label>
+          <input type="email" id="regEmail" name="email" required>
         </div>
         <div class="form-group">
           <label for="regPassword">Password:</label>
@@ -171,6 +178,42 @@
         </div>
       </div>
     </div>
+
+    <!-- Information Section -->
+    <div class="information">
+      <div class="row">
+        <div class="col-12 text-center mb-5">
+          <h3><i class="fas fa-futbol"></i> Sport & Fitness</h3>
+        </div>
+      </div>
+      <div id="infoContent" class="row">
+        <div class="col-md-4">
+          <div class="info-card text-center" data-card="1">
+            <img src="https://images.unsplash.com/photo-1546817372-628669db4655?w=400&h=250&fit=crop&crop=center" alt="Calcio" class="mb-3 info-image">
+            <h3 data-editable="title">Calcio ⚽</h3>
+            <p data-editable="content">Il calcio è lo sport più popolare al mondo. Migliora la coordinazione, la resistenza cardiovascolare e favorisce il gioco di squadra. Perfetto per tutte le età!</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+         <div class="info-card text-center" data-card="2">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop&crop=center" alt="Basket" class="mb-3 info-image">
+            <h3 data-editable="title">Basket 🏀</h3>
+            <p data-editable="content">Il basket sviluppa agilità, coordinazione e resistenza. Sport dinamico che combina velocità e strategia. Ideale per migliorare riflessi e lavoro di squadra.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="info-card text-center" data-card="3">
+            <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=400&h=250&fit=crop&crop=center" alt="Tennis" class="mb-3 info-image">
+            <h3 data-editable="title">Tennis 🎾</h3>
+            <p data-editable="content">Il tennis è uno sport individuale che sviluppa precisione, concentrazione e resistenza. Migliora i riflessi e la coordinazione occhio-mano. Sport completo per il corpo e la mente.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
   </main>
 
   <!-- Footer -->
@@ -193,12 +236,109 @@
     </div>
   </footer>
 
+  <!-- Modal per modifica dati utente -->
+          <!-- Modal Modifica Profilo -->
+        <div id="editProfileModal" class="auth-modal">
+            <div class="auth-form">
+                <button class="close-btn" onclick="closeModal('editProfileModal')">&times;</button>
+                <h3><i class="fas fa-user-edit"></i> Modifica Dati</h3>
+                <form id="editProfileForm">
+                    <div class="form-group">
+                        <input type="text" id="editUsername" placeholder="Username" required>
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="editEmail" placeholder="Email" required>
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="editPassword" placeholder="Nuova Password (lascia vuoto per non modificare)">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="auth-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('editProfileModal')">
+                            <i class="fas fa-times"></i> Annulla
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Salva Dati
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+          </div>
+
+  <!-- jQuery -->
+
+  <!-- Modal per modifica singola card -->
+  <div id="editSingleCardModal" class="auth-modal">
+    <div class="auth-form" style="max-width: 600px;">
+      <button class="close-btn" onclick="closeModal('editSingleCardModal')">&times;</button>
+      <h3><i class="fas fa-edit"></i> Modifica Sezione <span id="cardNumber"></span></h3>
+      <form id="editSingleCardForm">
+        <div class="form-group mb-4">
+          <label class="form-label">
+            <i class="fas fa-image"></i> URL Immagine
+          </label>
+          <input type="url" class="form-control" id="singleImageUrl" placeholder="https://images.unsplash.com/...">
+          <small class="form-text text-muted">Lascia vuoto per mantenere l'immagine attuale</small>
+        </div>
+        
+        <div class="form-group mb-4">
+          <label class="form-label">
+            <i class="fas fa-heading"></i> Titolo
+          </label>
+          <input type="text" class="form-control" id="singleTitle" maxlength="50" required>
+          <div class="char-counter">
+            <span id="titleCounter">0</span>/50 caratteri
+          </div>
+        </div>
+        
+        <div class="form-group mb-4">
+          <label class="form-label">
+            <i class="fas fa-align-left"></i> Contenuto
+          </label>
+          <textarea class="form-control" id="singleContent" rows="5" maxlength="300" required></textarea>
+          <div class="char-counter">
+            <span id="contentCounter">0</span>/300 caratteri
+          </div>
+        </div>
+        
+        <div class="preview-section mb-4">
+          <h6><i class="fas fa-eye"></i> Anteprima</h6>
+          <div class="card preview-card">
+            <img id="previewImage" src="" alt="Anteprima" class="card-img-top">
+            <div class="card-body text-center">
+              <h5 id="previewTitle" class="card-title"></h5>
+              <p id="previewContent" class="card-text"></p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="auth-buttons">
+          <button type="button" class="btn btn-secondary" onclick="resetSingleCard()">
+            <i class="fas fa-undo"></i> Reset
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="closeModal('editSingleCardModal')">
+            <i class="fas fa-times"></i> Annulla
+          </button>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-save"></i> Salva
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <!-- Bootstrap Bundle (includes Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@12.0.2/swiper-bundle.min.js"></script>
+  <!-- SheetJS for Excel export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
   <script src="assets/js/main.js"></script>
   <script>

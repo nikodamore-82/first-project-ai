@@ -1,4 +1,4 @@
-/* auto-generated from main.css on 2025-10-17T12:03:06+02:00 */
+/* auto-generated from main.css on 2025-10-17T17:57:49+02:00 */
 
 /* main.css - file principale di stile */
 /* Questo file verrà monitorato dal watcher per aggiornare main.scss */
@@ -269,6 +269,31 @@ main.container {
   font-size: 1.8rem;
 }
 
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #999;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.close-btn:hover {
+  color: #ff4757;
+  background: rgba(255, 71, 87, 0.1);
+  transform: rotate(90deg);
+}
+
 .form-group {
   margin-bottom: 20px;
 }
@@ -315,6 +340,79 @@ main.container {
 .auth-form .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Stili specifici per i pulsanti del modal di modifica profilo */
+#editProfileModal .auth-buttons {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  z-index: auto !important;
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+  margin-bottom: 0;
+  padding-top: 20px;
+  border-top: 1px solid #e9ecef;
+}
+
+#editProfileModal .auth-buttons .btn {
+  flex: 1;
+  margin-top: 0;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+#editProfileModal .btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: white;
+}
+
+#editProfileModal .btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+/* Assicura che il form sia completamente dentro il box bianco */
+#editProfileModal form {
+  margin: 0;
+  padding: 0;
+}
+
+#editProfileModal .auth-form {
+  overflow: hidden;
+}
+
+/* Stili per utenti amministratori */
+.user-item.admin-user {
+  background: linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%);
+  border-left-color: #dc3545;
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.15);
+}
+
+.user-item.admin-user:hover {
+  background: linear-gradient(135deg, #fff0f0 0%, #ffdddd 100%);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
+}
+
+.user-avatar.admin-avatar {
+  background: linear-gradient(135deg, #dc3545, #ff6b6b);
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.admin-badge {
+  background: #dc3545;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 10px;
+  margin-left: 8px;
+  text-shadow: none;
 }
 
 .close-modal {
@@ -539,5 +637,607 @@ main.container {
   .auth-form {
     padding: 30px 25px;
     width: 95vw;
+  }
+}
+
+/* Stili per icone di sicurezza */
+.security-icon {
+  font-size: 0.9rem;
+  margin-right: 0.25rem;
+}
+
+.security-info {
+  background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+  border-left: 4px solid #2196f3;
+  padding: 12px 16px;
+  margin: 15px 0;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.security-info i {
+  color: #2196f3;
+}
+
+.user-item .fa-shield-alt {
+  color: #4caf50 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.user-item .fa-exclamation-triangle {
+  color: #ff9800 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.migrated-info {
+  font-size: 0.8rem;
+  color: #2196f3;
+  font-style: italic;
+}
+
+/* Animazione per caricamento crittografia */
+.auth-form .fa-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ========================================== */
+/* SEZIONE INFORMATION */
+/* ========================================== */
+
+/* Sezione Information */
+.information {
+  padding: 40px 0;
+  margin: 40px 0;
+}
+
+.information h3 {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.information h3 i {
+  color: #e74c3c;
+  margin-right: 15px;
+}
+
+/* Info Cards */
+.info-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.info-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.info-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+}
+
+.info-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.info-card:hover .info-image {
+  transform: scale(1.05);
+}
+
+.info-card h3 {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 20px 0 15px 0;
+  text-align: center;
+}
+
+.info-card p {
+  color: #5a6c7d;
+  line-height: 1.7;
+  font-size: 0.95rem;
+  text-align: justify;
+}
+
+/* Responsive per sezione Information */
+@media (max-width: 768px) {
+  .information h3 {
+    font-size: 2rem;
+  }
+  
+  .info-card {
+    margin-bottom: 30px;
+  }
+  
+  .info-image {
+    height: 200px;
+  }
+}
+
+/* ========================================== */
+/* STILI PER SEZIONE INFORMATION E CMS */
+/* ========================================== */
+
+/* Sezione Information */
+.information {
+  padding: 40px 0;
+  margin: 40px 0;
+}
+
+.information h3 {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.information h3 i {
+  color: #e74c3c;
+  margin-right: 15px;
+}
+
+/* Info Cards */
+.info-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.info-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.info-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+}
+
+/* Controlli Admin per Card */
+.card-admin-controls {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 10;
+  opacity: 0;
+  display: none !important;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+/* Mostra i controlli solo se sono admin-visible */
+.card-admin-controls.admin-visible {
+  opacity: 1;
+  display: block !important;
+  transform: translateY(0);
+}
+
+/* Solo per dispositivi desktop: mostra controlli al hover se admin */
+@media (min-width: 769px) {
+  .card-admin-controls.admin-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .info-card:hover .card-admin-controls.admin-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Su dispositivi mobili: sempre visibili se admin */
+@media (max-width: 768px) {
+  .card-admin-controls.admin-visible {
+    opacity: 1;
+    display: block !important;
+    transform: translateY(0);
+  }
+}
+
+.edit-card-btn {
+  background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.edit-card-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4);
+  background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+}
+
+.edit-card-btn:active {
+  transform: scale(0.95);
+}
+
+/* Nascondi controlli admin per utenti non admin */
+.card-admin-controls.hidden {
+  display: none !important;
+}
+
+.info-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.info-card:hover .info-image {
+  transform: scale(1.05);
+}
+
+.info-card h3 {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 20px 0 15px 0;
+  text-align: center;
+}
+
+.info-card p {
+  color: #5a6c7d;
+  line-height: 1.7;
+  font-size: 0.95rem;
+  text-align: justify;
+}
+
+/* Pulsante Edit per Admin */
+#editInfoBtn {
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+
+#editInfoBtn.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#editInfoBtn:hover {
+  background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(243, 156, 18, 0.3);
+}
+
+/* Modal CMS Editing */
+#editInfoModal .auth-form {
+  max-width: 950px !important;
+  padding: 25px;
+}
+
+#editInfoModal .card {
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#editInfoModal .card-header {
+  border-bottom: none;
+  padding: 12px 20px;
+  font-weight: 600;
+}
+
+#editInfoModal .card-body {
+  padding: 20px;
+}
+
+#editInfoModal .form-control {
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+#editInfoModal .form-control:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  outline: none;
+}
+
+#editInfoModal .form-label {
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+#editInfoModal textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+#editInfoModal .auth-buttons {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #e9ecef;
+}
+
+#editInfoModal .btn {
+  padding: 12px 25px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+#editInfoModal .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Animazione per salvataggio */
+.info-card.saving {
+  opacity: 0.7;
+  transform: scale(0.98);
+}
+
+.info-card.saved {
+  animation: savedPulse 0.6s ease;
+}
+
+@keyframes savedPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+/* Indicatori di modifica */
+.editing-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(243, 156, 18, 0.9);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  z-index: 10;
+  animation: pulse 2s infinite;
+}
+
+/* Responsive per CMS */
+@media (max-width: 768px) {
+  #editInfoModal .auth-form {
+    max-width: 95vw !important;
+    padding: 15px;
+    max-height: 85vh;
+  }
+  
+  .information h3 {
+    font-size: 2rem;
+  }
+  
+  .info-card {
+    margin-bottom: 30px;
+  }
+  
+  .info-image {
+    height: 200px;
+  }
+}
+
+/* ========================================== */
+/* MODAL EDITING SINGOLA CARD */
+/* ========================================== */
+
+#editSingleCardModal .auth-form {
+  max-width: 650px !important;
+}
+
+#editSingleCardModal .form-label {
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#editSingleCardModal .form-control {
+  border: 2px solid #e9ecef;
+  border-radius: 10px;
+  padding: 12px 15px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+#editSingleCardModal .form-control:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+#editSingleCardModal textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
+  line-height: 1.6;
+}
+
+/* Contatore caratteri */
+.char-counter {
+  text-align: right;
+  font-size: 0.8rem;
+  color: #6c757d;
+  margin-top: 5px;
+}
+
+.char-counter.warning {
+  color: #f39c12;
+}
+
+.char-counter.danger {
+  color: #e74c3c;
+}
+
+/* Sezione anteprima */
+.preview-section {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  border: 2px dashed #dee2e6;
+}
+
+.preview-section h6 {
+  color: #495057;
+  font-weight: 600;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.preview-card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: white;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.preview-card .card-img-top {
+  height: 150px;
+  object-fit: cover;
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.preview-card .card-img-top.no-image::before {
+  content: 'Nessuna immagine';
+}
+
+.preview-card .card-body {
+  padding: 15px;
+}
+
+.preview-card .card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.preview-card .card-text {
+  font-size: 0.85rem;
+  color: #5a6c7d;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+/* Animazioni per preview */
+.preview-card {
+  transition: all 0.3s ease;
+}
+
+.preview-card.updating {
+  opacity: 0.7;
+  transform: scale(0.98);
+}
+
+/* Stili per validazione form */
+.form-control.is-invalid {
+  border-color: #e74c3c;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+.form-control.is-valid {
+  border-color: #27ae60;
+  box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1);
+}
+
+.invalid-feedback {
+  display: block;
+  color: #e74c3c;
+  font-size: 0.8rem;
+  margin-top: 5px;
+}
+
+.valid-feedback {
+  display: block;
+  color: #27ae60;
+  font-size: 0.8rem;
+  margin-top: 5px;
+}
+
+/* Responsive per modal singola */
+@media (max-width: 768px) {
+  #editSingleCardModal .auth-form {
+    max-width: 95vw !important;
+    padding: 20px 15px;
+  }
+  
+  .preview-card {
+    max-width: 100%;
+  }
+  
+  .card-admin-controls {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .edit-card-btn {
+    width: 35px;
+    height: 35px;
   }
 }

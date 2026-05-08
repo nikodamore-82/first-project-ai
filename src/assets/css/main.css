@@ -14,15 +14,31 @@ body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
   color: #333;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 /* Modern Header */
 header {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  position: relative;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   padding: 2rem 0;
   margin-bottom: 3rem;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+header > * {
+  position: relative;
+  z-index: 1;
 }
 
 header h1 {
@@ -161,11 +177,49 @@ main.container {
 }
 
 /* CSS per sistema di autenticazione moderno */
-.auth-buttons {
-  position: fixed;
-  top: 25px;
-  right: 25px;
+.auth-menu-wrapper {
+  position: absolute;
+  bottom: 1rem;
+  right: 1.5rem;
   z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.hamburger-btn span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger-btn.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger-btn.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger-btn.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.auth-buttons {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -609,7 +663,9 @@ main.container {
   color: #666;
   line-height: 1.6;
 }
-
+#infoContent{
+  gap:30px 0;
+}
 /* Responsive design */
 @media (max-width: 768px) {
   header h1 {
@@ -618,18 +674,48 @@ main.container {
   
   main.container {
     padding: 2rem 1.5rem;
-    margin: 1rem;
+    margin: 1rem 0;
   }
   
   .swiper {
     height: 300px;
   }
   
+  .auth-menu-wrapper {
+    top: auto;
+    bottom: 0.75rem;
+    right: 1rem;
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
+
   .auth-buttons {
-    top: 15px;
-    right: 15px;
-    flex-direction: column;
-    align-items: flex-end;
+    display: none !important;
+    flex-direction: column !important;
+    align-items: stretch;
+    position: absolute !important;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    background: rgba(20, 20, 30, 0.92);
+    backdrop-filter: blur(15px);
+    border-radius: 14px;
+    padding: 12px;
+    gap: 8px;
+    min-width: 180px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    z-index: 2000;
+  }
+
+  .auth-buttons.open {
+    display: flex !important;
+  }
+
+  .auth-buttons .btn {
+    width: 100%;
+    text-align: center;
   }
   
   .auth-form {
